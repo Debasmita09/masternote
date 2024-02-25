@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MasterNotes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css" />
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="add-note-form">
+        <div class="heading-elements"><h1>Note Master</h1></div>
+        <div class="input-elements">
+          <label for="text">Title</label>
+          <input type="text" id="Note-Title"placeholder="Max 30 CHAR"  required />
+        </div>
+
+        <div class="input-elements">
+          <label for="text" id="noted-desc">Description</label>
+          <textarea type="text" id="des-cription" required></textarea>
+        </div>
+        <button id="add-btn">Submit</button>
+        
+      </div>
+      <div id="show-text"></div>
+    </div>
+
+    <script src="../js/index.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>
+
+
