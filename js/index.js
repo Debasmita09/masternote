@@ -6,6 +6,10 @@ let cardIdCounter = parseInt(localStorage.getItem("cardIdCounter")) || 1;
 let selectedCardIndex = null;
 
 addBtn.addEventListener("click", function () {
+  if(noteTitle.value === "" && desCription.value === "") {
+    alert("title or desription is empty");
+    return;
+  }
   if (selectedCardIndex !== null) {
     saveUpdatedCard(selectedCardIndex);
   } else {
