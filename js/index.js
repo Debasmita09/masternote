@@ -94,30 +94,68 @@ function saveUpdatedCard(index) {
   desCription.value = "";
 }
 
+// function showCards() {
+//   let data = localStorage.getItem("noteCards");
+//   let allCards = JSON.parse(data) || [];
+
+//   // Display all note cards
+//   showText.innerHTML = "";
+//   allCards.forEach((card, index) => {
+//     showText.innerHTML += `<div class="note-card">
+//             <div class="note-header">
+//                 <p class="note-title">${card.title}</p>
+//             </div>
+//             <div class="note-body">
+//                 <p class="note-description">${card.description}</p>
+//             </div>
+//             <div class="note-footer">
+//                 <p class="note-meta">${card.timestamp}</p>
+              
+//                 <button onclick="removeCard(${index})"><i class="fa fa-trash"></i></button>
+              
+//                 <button onclick="updateCard(${index})"><i class="fa fa-edit"></i></button>
+//             </div>
+//         </div>`;
+//   });
+// }
 function showCards() {
   let data = localStorage.getItem("noteCards");
   let allCards = JSON.parse(data) || [];
 
   // Display all note cards
   showText.innerHTML = "";
-  allCards.forEach((card, index) => {
-    showText.innerHTML += `<div class="note-card">
-            <div class="note-header">
-                <p class="note-title">${card.title}</p>
-            </div>
-            <div class="note-body">
-                <p class="note-description">${card.description}</p>
-            </div>
-            <div class="note-footer">
-                <p class="note-meta">${card.timestamp}</p>
-              
-                <button onclick="removeCard(${index})"><i class="fa fa-trash"></i></button>
-              
-                <button onclick="updateCard(${index})"><i class="fa fa-edit"></i></button>
-            </div>
+  let cardsPerRow = 4;
+
+  for (let i = 0; i < allCards.length; i += cardsPerRow) {
+    // Create a row container
+    let rowContainer = document.createElement("div");
+    rowContainer.classList.add("note-card-row");
+
+    // Display cards in the row
+    for (let j = i; j < i + cardsPerRow && j < allCards.length; j++) {
+      let card = allCards[j];
+      let cardElement = document.createElement("div");
+      cardElement.classList.add("note-card");
+      cardElement.innerHTML = `
+        <div class="note-header">
+          <p class="note-title">${card.title}</p>
+        </div>
+        <div class="note-body">
+          <p class="note-description">${card.description}</p>
+        </div>
+        <div class="note-footer">
+          <p class="note-meta">${card.timestamp}</p>
+          <button onclick="removeCard(${j})"><i class="fa fa-trash"></i></button>
+          <button onclick="updateCard(${j})"><i class="fa fa-edit"></i></button>
         </div>`;
-  });
+      rowContainer.appendChild(cardElement);
+    }
+
+    // Append the row container to the showText div
+    showText.appendChild(rowContainer);
+  }
 }
+
 
 // Initial display of note cards when the page loads
 showCards();
